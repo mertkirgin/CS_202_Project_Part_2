@@ -12,7 +12,7 @@ public class DBConnection {
 
     public static Connection getConnection() throws SQLException {
         if (URL == null || USERNAME == null || PASSWORD == null) {
-            System.err.println("HATA: Environment Variable'lar okunamadı! Run Configuration ayarlarını kontrol et.");
+            System.err.println("Can't read env. var.");
         }
 
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);

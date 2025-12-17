@@ -9,14 +9,13 @@ import java.sql.Statement;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("⏳ Veritabanına bağlanılıyor (Environment Variables kullanılarak)...");
+        System.out.println("Connecting to DB.");
 
         // Try-with-resources bloğu: Bağlantıyı işimiz bitince otomatik kapatır.
         try (Connection connection = DBConnection.getConnection()) {
 
             if (connection != null) {
-                System.out.println("✅ BAŞARILI! Bağlantı sağlandı.");
-                System.out.println("--------------------------------------------------");
+                System.out.println("Connection Established.");
 
                 // Basit bir test sorgusu atalım
                 String sql = "SELECT uName, uRole FROM Users LIMIT 5";
@@ -34,13 +33,7 @@ public class Main {
             }
 
         } catch (SQLException e) {
-            System.err.println("❌ HATA: Bağlantı başarısız oldu!");
-            System.err.println("Muhtemel Sebepler:");
-            System.err.println("1. Run Configuration içindeki ŞİFRE yanlış olabilir (1234 mü 123456 mı?).");
-            System.err.println("2. MySQL servisi çalışmıyor olabilir.");
-            System.err.println("3. Veritabanı adı (URL içinde) yanlış olabilir.");
-
-            System.out.println("\n--- Hata Detayı ---");
+            System.err.println("Error in DB connection.");
             e.printStackTrace();
         }
     }
